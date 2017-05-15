@@ -19,11 +19,11 @@ def import_training(path = '..//..//data//simulation'):
     X_raw = []
     X_hog = []
     hog = cv2.HOGDescriptor(path + "//hog.xml")
-    for i in range(1):
+    for i in range(10000):
         tif_file = os.path.join(image_path, str(i+1)+'.tif')
         print 'importing', tif_file
         imArray = cv2.imread(tif_file)
-        print imArray.shape
+        #print imArray.shape
         imArray_flat = imArray[:,:,0].reshape(imArray.shape[0]*imArray.shape[1], 1)
         X_raw.append(imArray_flat[:,0])
         plt.imshow(imArray)
@@ -34,5 +34,5 @@ def import_training(path = '..//..//data//simulation'):
     Y = scipy.io.loadmat(os.path.join(path, 'target.mat'))['target']
     return np.array(X_raw), np.array(X_hog), Y
 
-X_raw, X_hog, Y = import_training()
-print X_raw.shape, X_hog.shape, Y.shape
+# X_raw, X_hog, Y = import_training()
+# print X_raw.shape, X_hog.shape, Y.shape
