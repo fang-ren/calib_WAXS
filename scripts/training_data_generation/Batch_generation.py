@@ -10,9 +10,12 @@ import matplotlib.pyplot as plt
 import os.path
 import imp
 import random
+import scipy.io
+import cv2
 
 LaB6rings_gen = imp.load_source('detArcGen', 'lab6rings_generation.py')
-convert_tif = imp.load_source('convert_tif', 'Convert_tif.py')
+
+
 
 
 # pixel dimension for the detector
@@ -33,18 +36,17 @@ Y0 = np.arange(2100, 2500, 100)
 
 
 
-save_path = 'C:\Research_FangRen\Python codes\calib_WAXS\LaB6_simu'
-
+save_path = '..\\..\\data\\simulation\\images'
 
 
 data = []
-for i in np.arange(141209, 200000):
-    x0 = 900 + random.random()*200
-    y0 = 2100 + random.random() * 400
-    d =  1500 + random.random() * 1000
-    Rot = -1 + random.random() * 2
-    tilt = 0.1 + random.random() * 0.5
-    fig = plt.figure(1, figsize=(1, 1))
+for i in np.arange(0, 2000):
+    x0 = 900.0 + random.random()*200.0
+    y0 = 2048.0 + random.random() * 400.0
+    d =  1500.0 + random.random() * 2000.0
+    Rot = 0.0 + random.random() * 6.28
+    tilt = 0.0 + random.random() * 1.0
+    fig = plt.figure(1, figsize= (20.48, 20.48))
     ax = fig.add_axes([0, 0, 1, 1])
     for q in Q:
         # each q generates one ring
@@ -55,11 +57,13 @@ for i in np.arange(141209, 200000):
     ax.axis('off')
     plt.savefig(os.path.join(save_path, str(i+1)+'.tif'), trasparent = True)
     plt.close()
-    print float(i)/2000.0
+    print float(i)/20000.0
     data.append([x0, y0, d, Rot, tilt])
 
 data = np.array(data)
-np.savetxt(os.path.join(save_path, 'training_Y.csv'), data, delimiter=',')
+scipy.io.savemat(os.path.join(save_path, 'training_Y.mat'), {'training_Y':data})
+
+
 
 
 

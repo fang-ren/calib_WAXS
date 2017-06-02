@@ -10,6 +10,8 @@ import PIL.ImageOps
 import numpy as np
 import os.path
 
+
+
 def convert_tif(path, filename):
     tif_file = os.path.join(path, filename)
     save_path = os.path.join(path, 'converted')
