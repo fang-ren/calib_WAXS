@@ -24,8 +24,8 @@ def convert_tif(path, filename):
     image_compress = inverted_image.resize((40, 40), Image.ANTIALIAS)
     image_compress.save(os.path.join(save_path, filename))
 
-path = 'C:\Research_FangRen\Python codes\calib_WAXS\LaB6_simu'
+path = '..\\..\\data\\demo\\'
 
-for i in range(200000):
+for i in range(2, 100):
     convert_tif(path, str(i+1)+'.tif')
 

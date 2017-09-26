@@ -20,7 +20,7 @@ X_hog_train, X_hog_test, Y_train2, Y_val2 = train_test_split(X_hog, Y, test_size
 seed = 0   # We set our random seed to zero for reproducibility
 params_rf = {
     'n_jobs': -1,
-    'n_estimators': 3200,
+    'n_estimators': 12800,
     'warm_start': True,
     'max_features': 0.3,
     'max_depth': 15,
@@ -29,7 +29,6 @@ params_rf = {
     'verbose': 1
 }
 
-
 rf2 = RandomForestRegressor(**params_rf)
 rf2.fit(X_hog_train, Y_train2)
 Y_predict2 = rf2.predict(X_hog_test)
@@ -37,10 +36,10 @@ score2 = rf2.score(X_hog_test, Y_val2)
 print score2
 
 
-# # use a real LaB6 image to test
-# X_real, X_real_hog= import_test()
-# Y_calib = rf2.predict(X_real_hog)
-# print Y_calib
+# use a real LaB6 image to test
+X_real, X_real_hog= import_test()
+Y_calib = rf2.predict(X_real_hog)
+print Y_calib
 
 # # visualization
 # save_path = '..//..//results//'

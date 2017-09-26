@@ -33,12 +33,12 @@ Y0 = np.arange(2100, 2500, 100)
 
 
 
-save_path = 'C:\Research_FangRen\Python codes\calib_WAXS\LaB6_simu'
+save_path = '..\\..\\data\\demo\\'
 
 
 
 data = []
-for i in np.arange(141209, 200000):
+for i in np.arange(1, 2000):
     x0 = 900 + random.random()*200
     y0 = 2100 + random.random() * 400
     d =  1500 + random.random() * 1000
